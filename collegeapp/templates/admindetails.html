@@ -1,0 +1,50 @@
+{% extends 'base1.html' %}
+{% block content %}
+{% load static %}
+<table border="2px" align="center" style="margin-top: 10px; background-color: bisque; width:50%">
+    <thead>
+        <tr>
+            <th colspan="10" style="text-align: center;">STAFF LIST</th>
+        </tr>
+    <tr>
+        <th>Admin Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Username</th>
+        <th>mobile</th>
+        <th>Photo</th>
+
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for teacher in teachers %}
+        <tr>
+            <td>{{ teacher.id }}</td>
+            <td>{{ teacher.user.first_name }}</td>
+            <td>{{ teacher.user.email }}</td>
+            <td>{{ teacher.user.username }}</td>
+            <td>{{ teacher.user_mobile }}</td>
+            {% if teacher.user_photo == '/static/image/user.png' %}
+            <td>
+                <img src="{% static 'image/user.png' %}" class="w-25">
+            </td>
+            {% else %}
+            <td>
+                <img src="{{ teacher.user_photo.url }}" class="w-25">
+            </td>
+
+            {% endif %}
+        
+            <td>
+                <a href="{% url 'delete_tutor' teacher.id  %}">Delete</a>
+               
+            </td>
+
+            
+    </tr>
+    {% endfor %} 
+    </tbody>
+
+</table>
+{% endblock %}

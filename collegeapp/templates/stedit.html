@@ -1,0 +1,33 @@
+{% extends 'base1.html' %}
+{% block content %}
+
+<div class="container bg-light" style="border-radius: 10px; width:50%; margin-top: 30px;">
+    <h1 style="text-align:center; ">Update Student</h1>
+
+    <form action="/update_student/{{ students.id }}" method="post" class="form pt-5 pb-5" style="width: 50%; margin-left:25%">
+        {% csrf_token %}
+        
+ 
+        <label></label><input type="text" name="sname" class="form-control" value="{{ students.std_name }}"><br>
+        
+        <input type="text" name="address"  class="form-control" value="{{ students.std_address }}"><br>
+        
+       
+        <input type="number" name="age" class="form-control" value="{{ students.std_age }}"><br>
+
+        <select class="form-control" name="cname">
+            {% for i in cou %}
+            <option {% if i.course_name == students.course.course_name %} selected="selected" {% endif %} value="{{ i.id}}">{{ i.course_name }}</option>
+            {% endfor %}
+        </select>
+       
+        <input type="date" name="jdate" class="form-control" value="{{ students.std_date|date:"Y-m-d" }}"><br>
+       
+ 
+        <button type="submit" class="btn btn-outline-info" style="margin-left: 40%;">Submit</button>
+        <br>
+        <p class='text-muted'>Already a member. <a href="{% url 'register' %}">Login</a></p>
+       
+    </form>
+ </div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base1.html' %}
+{% block content %}
+<h1 style="text-align:center;">Add Student</h1>
+<div class="container bg-light" style="border-radius: 10px; width:50%">
+
+    <form action="{% url 'add_student' %}" method="post" class="form pt-5 pb-5" style="width: 50%; margin-left:25%">
+        {% csrf_token %}
+ 
+        <input type="text" name="sname" class="form-control" placeholder="Student Name"><br>
+        
+        <textarea name="address"  class="form-control" placeholder="Address"></textarea><br>
+        
+       
+        <input type="number" name="age" class="form-control" placeholder="Enter Age"><br>
+       
+        <input type="date" name="jdate" class="form-control" placeholder="Join Date"><br>
+        <select name="sel"  class="form-control" >
+            {% for choice in courses %}
+              <option value="{{ choice.id }}" >{{ choice.course_name}}</option> 
+            {% endfor %}
+        </select>
+ 
+        <button type="submit" class="btn btn-outline-info" style="margin-left: 40%;">Submit</button>
+        <br>
+        <p class='text-muted'>Already a member. <a href="#">Login</a></p>
+    </form>
+ </div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<!-- <style>
+    body{
+        background-color: aqua;
+    }
+</style>
+<h1 style="margin-top: 20%;">
+    Signup................
+</h1> -->
+
+
+<div class="container">
+    {% for message in messages %}
+<h5>
+    <div class="alert alert-danger mt-5" style="width: 50%;">
+        {{ message }}
+    </div>
+</h5>
+    {% endfor %}
+</div>
+<div class="container bg-light" style="border-radius: 10px; width:50%;background-image: url('/static/image/form.jpg');background-size: cover;">
+    <h1 style="text-align: center;" >Registration</h1>
+   <form action="{% url 'sign_up' %}" method="post" enctype="multipart/form-data" class="form pt-5 pb-5" style="width: 50%; margin-left:25%;">
+       {% csrf_token %}
+
+       <input type="text" name="fname" class="form-control" placeholder="First Name"><br>
+       <input type="text" name="lname"class="form-control" placeholder="Last Name"><br>
+       <textarea name="address"  class="form-control" placeholder="Address"></textarea><br>
+       
+       <input type="email" name="email" class="form-control" placeholder="Email"><br>
+       <input type="text" name="uname" class="form-control" placeholder="Username"><br>
+       <input type="password" name="passw" class="form-control" placeholder="Strong Password"><br>
+       <input type="password" name="cpassw" class="form-control" placeholder="Conform Password"><br>
+       <input type="tel" name="mobile" class="form-control" placeholder="mobile Number"><br>
+       <label>Gender</label><br>
+       <label>Male</label><input type="radio" name="gender" value="male">
+       <label>Female</label><input type="radio" name="gender" value="female">
+       <label>Others</label><input type="radio" name="gender" value="others"><br>
+       <label>Upload Image</label>
+        <input type="file" name="file" accept="image/*" class="form-control-file">
+
+       <button type="submit" class="btn btn-outline-info" style="margin-left: 40%;">Submit</button>
+       <br>
+       <p class='text-muted'>Already a member. <a href="#">Login</a></p>
+   </form>
+</div>
+{% endblock %}

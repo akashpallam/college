@@ -1,0 +1,42 @@
+{% extends 'base1.html' %}
+{% block content %}
+<table border="3px" align="center" style="margin-top: 100px; background-color:wheat;">
+    <thead>
+        <tr>
+            <th colspan="10" style="text-align: center;">STUDENT LIST</th>
+        </tr>
+    <tr>
+        <th>Student Id</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Age</th>
+        <th>Course</th>
+       
+        
+        <th>Join Date</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for student in std %}
+        <tr>
+            <td>{{ student.id }}</td>
+            <td>{{ student.std_name }}</td>
+            <td>{{ student.std_address }}</td>
+            <td>{{ student.std_age }}</td>
+            <td>{{ student.course }}</td>
+            <td>{{ student.std_date }}</td>
+        
+            <td>
+                <button><a href="{% url 'delete_std' student.id  %}">Delete</a></button><br>
+            
+                <button><a href="{% url 'edit_student' student.id  %}">Update</a></button>
+            </td>
+
+            
+    </tr>
+    {% endfor %} 
+    </tbody>
+
+</table>
+{% endblock %}
